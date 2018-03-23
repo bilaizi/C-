@@ -1,6 +1,6 @@
 #include <linux/init.h>
-#include <linux/module.h>
 #include <linux/kernel.h>
+#include <linux/module.h>
 
 static int __init helloworld_init(void) {
     pr_info("Start of hello world!\n");
