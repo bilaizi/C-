@@ -3,24 +3,24 @@
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 
-static int myint = 1;
-static int myarr[3] = {0, 1, 2};
-static char *mystr = "hello";
+static int a = 1;
+static int b[3] = {0, 1, 2};
+static char *c = "hello world!";
 
-module_param(myint, int, S_IRUGO);;
-module_param_array(myarr, int,NULL, S_IWUSR|S_IRUSR);
-module_param(mystr, charp, S_IRUGO)
+module_param(a, int, S_IRUGO);;
+module_param_array(b, int,NULL, S_IWUSR|S_IRUSR);
+module_param(c, charp, S_IRUGO)
     
-MODULE_PARM_DESC(myint,"this is my int variable");
-MODULE_PARM_DESC(myarr,"this is my array of int");
-MODULE_PARM_DESC(mystr,"this is my char pointer variable");
+MODULE_PARM_DESC(a,"this is a int variable");
+MODULE_PARM_DESC(b,"this is a array of int");
+MODULE_PARM_DESC(c,"this is a char pointer variable");
 MODULE_INFO(my_field_name, "What eeasy value");
 
 static int __init helloworld_init(void) {
     pr_info("Start of hello world with parameters!\n");
-    pr_info("The *myint* parameter: %d\n", myint);
-    pr_info("The *myarr* parameter: %d, %d, %d\n", myarr[0], myarr[1], myarr[2]);
-    pr_info("The *mystr* parameter: %s\n", mystr);
+    pr_info("The *a* parameter: %d\n", a);
+    pr_info("The *b* parameter: %d, %d, %d\n", b[0], b[1], b[2]);
+    pr_info("The *c* parameter: %s\n", c);
     return 0;
 }
 
@@ -32,3 +32,7 @@ module_init(helloworld_init);
 module_exit(helloworld_exit);
 MODULE_AUTHOR("Bi Laizi <2512075115@qq.com>");
 MODULE_LICENSE("GPL");
+
+/*
+insmod hellomodule-params.ko a=1 b=0,1,2 c="hello world!"
+*/
