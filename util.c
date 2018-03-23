@@ -28,5 +28,7 @@ struct person {
 #define container_of(ptr, type, member) ({\
    	const typeof(((type *)0)->member) * __mptr = (ptr);\
 	(type *)((char *)__mptr - offsetof(type, member)); })
-container_of(pointer, container_type, container_field);
+struct person the_person;
+char *the_name_ptr = the_person.name;
+container_of(the_name_ptr, struct person, name);
 */
