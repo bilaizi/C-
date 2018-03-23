@@ -13,5 +13,6 @@ static void __exit helloworld_exit(void) {
 
 module_init(helloworld_init);
 module_exit(helloworld_exit);
-MODULE_AUTHOR("Bi Laizi <2512075115@qq.com>");
+MODULE_AUTHOR("Bi Laizi <bilaizi1030@126.com>");
+MODULE_AUTHOR("Bi Peng <2512075115@qq.com>");
 MODULE_LICENSE("GPL");
