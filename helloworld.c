@@ -21,5 +21,5 @@ MODULE_DESCRIPTION("Hello, world! Module");
 $ cat /proc/sys/kernel/printk
 4	4	1	7
 $ 
-
+# echo <level> > /proc/sys/kernel/printk
 */
