@@ -31,4 +31,26 @@ struct person {
 struct person the_person;
 char *the_name_ptr = the_person.name;
 container_of(the_name_ptr, struct person, name);
+
+
+
+#define LIST_HEAD_INIT(name) { &(name), &(name) }
+#define LIST_HEAD(name) struct list_head name = LIST_HEAD_INIT(name)
+static inline void INIT_LIST_HEAD(struct list_head *list){
+    WRITE_ONCE(list->next, list);
+    list->prev = list;
+}
+#ifdef CONFIG_DEBUG_LIST
+    extern bool __list_add_valid(struct list_head *new, struct list_head *prev, struct list_head *next);
+    extern bool __list_del_entry_valid(struct list_head *entry);
+#else
+    static inline bool __list_add_valid(struct list_head *new, struct list_head *prev, struct list_head *next) {
+	return true;
+    }
+    static inline bool __list_del_entry_valid(struct list_head *entry) {
+	return true;
+    }
+#endif
+
+
 */
