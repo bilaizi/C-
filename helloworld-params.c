@@ -34,5 +34,6 @@ MODULE_AUTHOR("Bi Laizi <2512075115@qq.com>");
 MODULE_LICENSE("GPL");
 
 /*
+//To load the hellomodule-params.ko module and feed our parameter, we do the following:
 insmod hellomodule-params.ko a=1 b=0,1,2 c="hello world!"
 */
