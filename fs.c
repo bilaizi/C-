@@ -141,7 +141,6 @@ struct file {
 	struct path		f_path;
 	struct inode		*f_inode;	/* cached value */
 	const struct file_operations	*f_op;
-
 	/*
 	 * Protects f_ep_links, f_flags.
 	 * Must not be taken from IRQ context.
@@ -156,14 +155,12 @@ struct file {
 	struct fown_struct	f_owner;
 	const struct cred	*f_cred;
 	struct file_ra_state	f_ra;
-
 	u64			f_version;
 #ifdef CONFIG_SECURITY
 	void			*f_security;
 #endif
 	/* needed for tty driver, and maybe others */
 	void			*private_data;
-
 #ifdef CONFIG_EPOLL
 	/* Used by fs/eventpoll.c to link all the hooks to this file */
 	struct list_head	f_ep_links;
