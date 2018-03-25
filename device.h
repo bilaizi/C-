@@ -19,11 +19,9 @@
  * @p:		Driver core's private data, no one other than the driver core can touch this.
  *
  * The device driver-model tracks all of the drivers known to the system.
- * The main reason for this tracking is to enable the driver core to match
- * up drivers with new devices. Once drivers are known objects within the
- * system, however, a number of other things become possible. Device drivers
- * can export information and configuration variables that are independent
- * of any specific device.
+ * The main reason for this tracking is to enable the driver core to match up drivers with new devices.
+ * Once drivers are known objects within the system, however, a number of other things become possible. 
+ * Device drivers can export information and configuration variables that are independent of any specific device.
  */
 struct device_driver {
 	const char		*name;
