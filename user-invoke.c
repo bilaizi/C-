@@ -1,6 +1,6 @@
 #include <linux/init.h>
 #include <linux/module.h>
-#include <linux/workqueue.h> /* for work queue */
+#include <linux/workqueue.h>
 #include <linux/kmod.h>
 
 static struct delayed_work delayed_shutdown_work;
