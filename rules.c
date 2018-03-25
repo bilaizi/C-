@@ -1,2 +1,2 @@
 
-sizeof *lp //sizeof(*lp) //
+sizeof *lp //sizeof(*lp) 
