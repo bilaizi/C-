@@ -1,1 +1,2 @@
 
+sizeof *lp //sizeof(*lp) //
