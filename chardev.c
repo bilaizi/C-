@@ -35,7 +35,7 @@ ssize_t dummy_write(struct file* filp, const char __user* buf, size_t count, lof
     return count;
 }
 
-struct file_operations dummy_fops = {
+struct file_operations fo = {
     .open       = dummy_open,
     .read       = dummy_read,
     .write      = dummy_write,
@@ -66,7 +66,7 @@ static int __init dummy_char_init(void)
     }
 
     /* Initialize the char device and tie a file_operations to it */
-    cdev_init(&dummy_cdev, &dummy_fops);
+    cdev_init(&dummy_cdev, &fo);
     dummy_cdev.owner = THIS_MODULE;
     /* Now make the device live for the users to access */
     cdev_add(&dummy_cdev, devt, 1);
