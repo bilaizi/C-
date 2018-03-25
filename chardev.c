@@ -5,8 +5,8 @@
 #include <linux/module.h>
 #include <linux/version.h>
 
-static unsigned int major; /* major number for device */
-static struct class *dummy_class;
+static unsigned int major;
+static struct class* dummy_class;
 static struct cdev dummy_cdev;
 
 
