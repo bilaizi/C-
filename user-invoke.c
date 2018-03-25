@@ -7,9 +7,9 @@ static struct delayed_work delayed_shutdown_work;
 
 static void delayed_shutdown(struct work_struct* work)
 {
-    char *cmd = "/sbin/shutdown";
+    char pathd = "/sbin/shutdown";
     char *argv[] = {
-        cmd,
+        path,
         "-h",
         "now",
         NULL,
@@ -19,7 +19,7 @@ static void delayed_shutdown(struct work_struct* work)
         "PATH=/sbin:/bin:/usr/sbin:/usr/bin",
         NULL,
     };
-    call_usermodehelper(cmd, argv, envp, 0);
+    call_usermodehelper(path, argv, envp, 0);
 }
 
 static int __init delayed_shutdown_init( void )
