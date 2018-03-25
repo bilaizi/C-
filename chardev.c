@@ -36,13 +36,13 @@ ssize_t dummy_write(struct file* filp, const char __user* buf, size_t count, lof
 }
 
 struct file_operations dummy_fops = {
-    open:       dummy_open,
-    release:    dummy_release,
-    read:       dummy_read,
-    write:      dummy_write,
+    .open       = dummy_open,
+    .read       = dummy_read,
+    .write:     = dummy_write,
+    .release    = dummy_release,
 };
 
-static int __init dummy_char_init_module(void)
+static int __init dummy_char_init(void)
 {
     struct device *dummy_device;
     int error;
@@ -88,7 +88,7 @@ static int __init dummy_char_init_module(void)
     return 0;
 }
 
-static void __exit dummy_char_cleanup_module(void)
+static void __exit dummy_char_cleanup(void)
 {
     unregister_chrdev_region(MKDEV(major, 0), 1);
     device_destroy(dummy_class, MKDEV(major, 0));
@@ -98,8 +98,8 @@ static void __exit dummy_char_cleanup_module(void)
     pr_info("dummy char module Unloaded\n");
 }
 
-module_init(dummy_char_init_module);
-module_exit(dummy_char_cleanup_module);
+module_init(dummy_char_init);
+module_exit(dummy_char_cleanup);
 
 MODULE_AUTHOR("John Madieu <john.madieu@gmail.com>");
 MODULE_DESCRIPTION("Dummy character driver");
