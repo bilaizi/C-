@@ -6,7 +6,7 @@ struct platform_device {
 	u32		num_resources;
 	struct resource *resource;
 	const struct platform_device_id *id_entry;
-	char* driver_override; /* Driver name to force a match */
+	char  *driver_override; /* Driver name to force a match */
 	/* MFD cell pointer */
 	struct mfd_cell *mfd_cell;
 	/* arch specific additions */
