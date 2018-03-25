@@ -22,3 +22,5 @@ struct platform_driver {
 	const struct platform_device_id *id_table;
 	bool prevent_deferred_probe;
 };
+extern struct resource *platform_get_resource(struct platform_device *, unsigned int, unsigned int);
+extern int platform_get_irq(struct platform_device *, unsigned int);
