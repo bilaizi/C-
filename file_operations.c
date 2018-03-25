@@ -1,3 +1,4 @@
+// https://github.com/torvalds/linux/blob/master/include/linux/fs.h
 struct file_operations {
 	struct module *owner;
 	loff_t (*llseek) (struct file*, loff_t, int);
