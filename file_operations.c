@@ -15,7 +15,7 @@ struct file_operations {
 	int (*open) (struct inode*, struct file*);
 	int (*flush) (struct file*, fl_owner_t id);
 	int (*release) (struct inode*, struct file*);
-	int (*fsync) (struct file*, loff_t, loff_t, int datasync);
+	int (*fsync) (struct file*, loff_t, loff_t, int);
 	int (*fasync) (int, struct file*, int);
 	int (*lock) (struct file*, int, struct file_lock*);
 	ssize_t (*sendpage) (struct file*, struct page*, int, size_t, loff_t*, int);
@@ -25,8 +25,8 @@ struct file_operations {
 	ssize_t (*splice_write)(struct pipe_inode_info*, struct file*, loff_t*, size_t, unsigned int);
 	ssize_t (*splice_read)(struct file*, loff_t*, struct pipe_inode_info*, size_t, unsigned int);
 	int (*setlease)(struct file*, long, struct file_lock**, void**);
-	long (*fallocate)(struct file* file, int mode, loff_t offset, loff_t len);
-	void (*show_fdinfo)(struct seq_file* m, struct file* f);
+	long (*fallocate)(struct file* file, int mode, loff_t, loff_t);
+	void (*show_fdinfo)(struct seq_file*, struct file*);
 #ifndef CONFIG_MMU
 	unsigned (*mmap_capabilities)(struct file*);
 #endif
