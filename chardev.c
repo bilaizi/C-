@@ -5,9 +5,12 @@
 #include <linux/module.h>
 #include <linux/version.h>
 
-static unsigned int major;
-static struct class* dummy_class;
-static struct cdev dummy_cdev;
+#define EEP_NBANK 8
+#define EEP_DEVICE_NAME "eep-mem"
+#define EEP_CLASS "eep-class"
+
+static struct class* eep_class;
+static struct cdev eep_cdev[EEP_NBANK];
 
 
 int dummy_open(struct inode* inode, struct file* filp)
