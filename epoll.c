@@ -69,8 +69,7 @@ int main(int argc,char* argv[]){
             std::cout << "connect from " << str  <<std::endl;
             ev.data.fd=connfd;                //设置用于读操作的文件描述符
             ev.events=EPOLLIN | EPOLLET;      //设置用于注测的读操作事件
-            epoll_ctl(epfd, EPOLL_CTL_ADD, connfd, &ev);
-            //注册ev事件
+            epoll_ctl(epfd, EPOLL_CTL_ADD, connfd, &ev);//注册ev事件
          } else if(events[i].events&EPOLLIN) {     //读事件
             if ((sockfd = events[i].data.fd) < 0) {
                continue;
