@@ -53,7 +53,7 @@ int main(int argc,char* argv[]){
     epoll_ctl(epfd, EPOLL_CTL_ADD, listenfd, &ev);     //注册epoll事件
     struct sockaddr_in clientaddr; 
     socklen_t clilen;
-   　char line[MAXLINE];
+    char line[MAXLINE];
     ssize_t n; 
     for(;;) { 
       nfds = epoll_wait(epfd, events, 20, 500); //等待epoll事件的发生
