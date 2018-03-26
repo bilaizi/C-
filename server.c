@@ -42,7 +42,7 @@ void lt(epoll_event *events, int nfds, int epollfd, int listenfd){
             struct sockaddr_in client_address;
             socklen_t client_address_length = sizeof(client_address);
             int connfd = accept(listenfd,(struct sockaddr*)&client_address,&client_address_length);
-            addfd(epollfd,connfd,false);  // 对connfd使用默认的lt模式
+            addfd(epollfd,connfd,false);  // 对connfd使用默认的LT模式
         }
         else if(events[i].events & EPOLLIN){ //只要socket读缓存中还有未读的数据，这段代码就会触发
             printf("event trigger once\n");
@@ -67,9 +67,9 @@ void et(epoll_event *events, int nfds, int epollfd, int listenfd){
             struct sockaddr_in client_address;
             socklen_t client_address_length = sizeof(client_address);
             int connfd = accept(listenfd,(struct sockaddr*)&client_address,&client_address_length);
-            addfd(epollfd,connfd, true);
+            addfd(epollfd,connfd, true); // 对connfd使用默认的ET模式
         }
-        else if (events[i].events & EPOLLIN){
+        else if (events[i].events & EPOLLIN){ //这段代码不会重复触发，所以要循环读取数据
             printf("event trigger once\n");
             while(true){
                 memset(buf, '\0', BUFFER_SIZE);
