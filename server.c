@@ -42,9 +42,9 @@ void lt(epoll_event *events, int nfds, int epollfd, int listenfd){
             struct sockaddr_in client_address;
             socklen_t client_address_length = sizeof(client_address);
             int connfd = accept(listenfd,(struct sockaddr*)&client_address,&client_address_length);
-            addfd(epollfd,connfd,false);
+            addfd(epollfd,connfd,false);  // 对connfd使用默认的lt模式
         }
-        else if(events[i].events & EPOLLIN){
+        else if(events[i].events & EPOLLIN){ //只要socket读缓存中还有未读的数据，这段代码就会触发
             printf("event trigger once\n");
             memset(buf,'\0',BUFFER_SIZE);
             int ret = recv(sockfd,buf,BUFFER_SIZE-1,0);
