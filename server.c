@@ -108,7 +108,7 @@ int main(int argc,char* argv[]){
     server_address.sin_port = htons(port);
     int listenfd = socket(PF_INET,SOCK_STREAM,0);
     assert(listenfd >= 0);
-    ret = bind(listenfd,(struct sockaddr*)&server_address,sizeof(server_address));
+    ret = bind(listenfd, (struct sockaddr*)&server_address, sizeof(server_address));
     assert(ret != -1);
     ret = listen(listenfd, 5);
     assert(ret != -1);
@@ -117,12 +117,12 @@ int main(int argc,char* argv[]){
     assert(epollfd != -1);
     addfd(epollfd,listenfd,true);
     while(true){
-        int ret = epoll_wait(epollfd,events,MAX_EVENT_NUMBER,-1);
+        int ret = epoll_wait(epollfd, events, MAX_EVENT_NUMBER, -1);
         if(ret < 0){
             printf("epoll failure\n");
             break;
         }
-        lt(events,ret,epollfd,listenfd);
+        lt(events, ret, epollfd, listenfd);
         //et(events,ret,epollfd,listenfd);
     }
     close(listenfd);
