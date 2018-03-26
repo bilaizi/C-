@@ -37,24 +37,19 @@
  */
 struct i2c_driver {
 	unsigned int class;
-
 	/* Notifies the driver that a new bus has appeared. You should avoid
 	 * using this, it will be removed in a near future.
 	 */
 	int (*attach_adapter)(struct i2c_adapter *) __deprecated;
-
 	/* Standard driver model interfaces */
 	int (*probe)(struct i2c_client *, const struct i2c_device_id *);
 	int (*remove)(struct i2c_client *);
-
 	/* New driver model interface to aid the seamless removal of the
 	 * current probe()'s, more commonly unused than used second parameter.
 	 */
 	int (*probe_new)(struct i2c_client *);
-
 	/* driver model interfaces that don't relate to enumeration  */
 	void (*shutdown)(struct i2c_client *);
-
 	/* Alert callback, for example for the SMBus alert protocol.
 	 * The format and meaning of the data value depends on the protocol.
 	 * For the SMBus alert protocol, there is a single bit of data passed
@@ -62,21 +57,15 @@ struct i2c_driver {
 	 * For the SMBus Host Notify protocol, the data corresponds to the
 	 * 16-bit payload data reported by the slave device acting as master.
 	 */
-	void (*alert)(struct i2c_client *, enum i2c_alert_protocol protocol,
-		      unsigned int data);
-
-	/* a ioctl like command that can be used to perform specific functions
-	 * with the device.
+	void (*alert)(struct i2c_client *, enum i2c_alert_protocol protocol, unsigned int data);
+	/* a ioctl like command that can be used to perform specific functions with the device.
 	 */
 	int (*command)(struct i2c_client *client, unsigned int cmd, void *arg);
-
 	struct device_driver driver;
 	const struct i2c_device_id *id_table;
-
 	/* Device detection callback for automatic device creation */
 	int (*detect)(struct i2c_client *, struct i2c_board_info *);
 	const unsigned short *address_list;
 	struct list_head clients;
-
 	bool disable_i2c_core_irq_mapping;
 };
