@@ -20,6 +20,21 @@ int main(int argc, char **argv){
 }
 */
 
+#include <stdio.h>
+#include <time.h>
+
+//
+// struct timespec
+//
+int main(void) {
+    struct tm tm;
+    struct timespec ts;
+    timespec_get(&ts, TIME_UTC);
+    printf("time_t tv_sec = %ld, long tv_nsec = %ld.\n",ts.tv_sec, ts.tv_nsec);
+    tm = *localtime(&ts.tv_sec);
+    printf("now %s", asctime(&tm));
+    return 0;
+}
 
 struct person {
     int age;
