@@ -37,8 +37,8 @@
  */
 struct i2c_driver {
 	unsigned int class;
-	/* Notifies the driver that a new bus has appeared. You should avoid
-	 * using this, it will be removed in a near future.
+	/* Notifies the driver that a new bus has appeared. 
+	 * You should avoid using this, it will be removed in a near future.
 	 */
 	int (*attach_adapter)(struct i2c_adapter *) __deprecated;
 	/* Standard driver model interfaces */
