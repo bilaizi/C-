@@ -8,10 +8,6 @@
 #include <stdio.h>
 
 #define MAXLINE 10 
-#define OPEN_MAX 100
-#define LISTENQ 20
-#define SERV_PORT 5555 
-#define INFTIM 1000
 
 void setnonblocking(int sock){
    int opts;
