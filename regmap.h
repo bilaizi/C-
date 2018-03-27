@@ -98,27 +98,21 @@
  */
 struct regmap_config {
 	const char *name;
-
 	int reg_bits;
 	int reg_stride;
 	int pad_bits;
 	int val_bits;
-
 	bool (*writeable_reg)(struct device *dev, unsigned int reg);
 	bool (*readable_reg)(struct device *dev, unsigned int reg);
 	bool (*volatile_reg)(struct device *dev, unsigned int reg);
 	bool (*precious_reg)(struct device *dev, unsigned int reg);
-
 	bool disable_locking;
 	regmap_lock lock;
 	regmap_unlock unlock;
 	void *lock_arg;
-
 	int (*reg_read)(void *context, unsigned int reg, unsigned int *val);
 	int (*reg_write)(void *context, unsigned int reg, unsigned int val);
-
 	bool fast_io;
-
 	unsigned int max_register;
 	const struct regmap_access_table *wr_table;
 	const struct regmap_access_table *rd_table;
@@ -129,20 +123,15 @@ struct regmap_config {
 	enum regcache_type cache_type;
 	const void *reg_defaults_raw;
 	unsigned int num_reg_defaults_raw;
-
 	unsigned long read_flag_mask;
 	unsigned long write_flag_mask;
 	bool zero_flag_mask;
-
 	bool use_single_rw;
 	bool can_multi_write;
-
 	enum regmap_endian reg_format_endian;
 	enum regmap_endian val_format_endian;
-
 	const struct regmap_range_cfg *ranges;
 	unsigned int num_ranges;
-
 	bool use_hwlock;
 	unsigned int hwlock_id;
 	unsigned int hwlock_mode;
