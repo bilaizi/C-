@@ -18,21 +18,18 @@
  *	This may be changed by the device's driver, or left at the
  *	default (0) indicating protocol words are eight bit bytes.
  *	The spi_transfer.bits_per_word can override this for each transfer.
- * @irq: Negative, or the number passed to request_irq() to receive
- *	interrupts from this device.
+ * @irq: Negative, or the number passed to request_irq() to receive interrupts from this device.
  * @controller_state: Controller's runtime state
  * @controller_data: Board-specific definitions for controller, such as
  *	FIFO initialization parameters; from board_info.controller_data
  * @modalias: Name of the driver to use with this device, or an alias
  *	for that name.  This appears in the sysfs "modalias" attribute
  *	for driver coldplugging, and in uevents used for hotplugging
- * @cs_gpio: gpio number of the chipselect line (optional, -ENOENT when
- *	not using a GPIO line)
+ * @cs_gpio: gpio number of the chipselect line (optional, -ENOENT when not using a GPIO line)
  *
  * @statistics: statistics for the spi_device
  *
- * A @spi_device is used to interchange data between an SPI slave
- * (usually a discrete chip) and CPU memory.
+ * A @spi_device is used to interchange data between an SPI slave(usually a discrete chip) and CPU memory.
  *
  * In @dev, the platform_data is used to hold information about this
  * device that's meaningful to the device's protocol driver, but not
@@ -69,10 +66,8 @@ struct spi_device {
 	void			*controller_data;
 	char			modalias[SPI_NAME_SIZE];
 	int			cs_gpio;	/* chip select gpio */
-
 	/* the statistics */
 	struct spi_statistics	statistics;
-
 	/*
 	 * likely need more hooks for more protocol options affecting how
 	 * the controller talks to each chip, like:
