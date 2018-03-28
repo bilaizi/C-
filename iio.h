@@ -95,5 +95,5 @@ struct iio_buffer_setup_ops {
 	int (*postenable)(struct iio_dev *);
 	int (*predisable)(struct iio_dev *);
 	int (*postdisable)(struct iio_dev *);
-	bool (*validate_scan_mask)(struct iio_dev *indio_dev, onst unsigned long *scan_mask);
+	bool (*validate_scan_mask)(struct iio_dev *indio_dev, const unsigned long *scan_mask);
 };
