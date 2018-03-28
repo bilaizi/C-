@@ -157,7 +157,7 @@ struct iio_info {
 	const struct attribute_group	*event_attrs;
 	const struct attribute_group	*attrs;
 
-	int (*read_raw)(struct iio_dev *indio_dev, struct iio_chan_spec const *chan, Sint *val, int *val2, long mask);
+	int (*read_raw)(struct iio_dev *indio_dev, struct iio_chan_spec const *chan, int *val, int *val2, long mask);
 	int (*read_raw_multi)(struct iio_dev *indio_dev, struct iio_chan_spec const *chan, int max_len, int *vals, int *val_len, long mask);
 	int (*read_avail)(struct iio_dev *indio_dev, struct iio_chan_spec const *chan, const int **vals, int *type, int *length, long mask);
 	int (*write_raw)(struct iio_dev *indio_dev, struct iio_chan_spec const *chan, int val, int val2, long mask);
