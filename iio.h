@@ -209,26 +209,17 @@ struct iio_info {
  *					Otherwise, the number of repetitions is
  *					omitted.
  *			endianness:	little or big endian
- * @info_mask_separate: What information is to be exported that is specific to
- *			this channel.
- * @info_mask_separate_available: What availability information is to be
- *			exported that is specific to this channel.
- * @info_mask_shared_by_type: What information is to be exported that is shared
- *			by all channels of the same type.
- * @info_mask_shared_by_type_available: What availability information is to be
- *			exported that is shared by all channels of the same
- *			type.
- * @info_mask_shared_by_dir: What information is to be exported that is shared
- *			by all channels of the same direction.
+ * @info_mask_separate: What information is to be exported that is specific to this channel.
+ * @info_mask_separate_available: What availability information is to be exported that is specific to this channel.
+ * @info_mask_shared_by_type: What information is to be exported that is shared by all channels of the same type.
+ * @info_mask_shared_by_type_available: What availability information is to be exported that is shared by all channels of the same type.
+ * @info_mask_shared_by_dir: What information is to be exported that is shared by all channels of the same direction.
  * @info_mask_shared_by_dir_available: What availability information is to be
  *			exported that is shared by all channels of the same
  *			direction.
- * @info_mask_shared_by_all: What information is to be exported that is shared
- *			by all channels.
- * @info_mask_shared_by_all_available: What availability information is to be
- *			exported that is shared by all channels.
- * @event_spec:		Array of events which should be registered for this
- *			channel.
+ * @info_mask_shared_by_all: What information is to be exported that is shared by all channels.
+ * @info_mask_shared_by_all_available: What availability information is to be exported that is shared by all channels.
+ * @event_spec:		Array of events which should be registered for this channel.
  * @num_event_specs:	Size of the event_spec array.
  * @ext_info:		Array of extended info attributes for this channel.
  *			The array is NULL terminated, the last element should
