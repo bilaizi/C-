@@ -185,11 +185,11 @@ struct device_driver {
 struct device {
 	struct device		*parent;
 	struct device_private	*p;
-	struct kobject kobj;
+	struct kobject          kobj;
 	const char		*init_name; /* initial name of the device */
 	const struct device_type *type;
 	struct mutex		mutex;	/* mutex to synchronize calls to its driver. */
-	struct bus_type	*bus;		/* type of bus device is on */
+	struct bus_type	        *bus;		/* type of bus device is on */
 	struct device_driver *driver;	/* which driver has allocated this device */
 	void		*platform_data;	/* Platform specific data, device core doesn't touch it */
 	void		*driver_data;	/* Driver data, set and get with dev_set/get_drvdata */
