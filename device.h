@@ -247,6 +247,7 @@ struct bus_attribute {
 	ssize_t (*store)(struct bus_type *bus, const char *buf, size_t count);
 }
 
+// https://github.com/torvalds/linux/blob/master/include/linux/gpio/driver.h
 #ifdef CONFIG_GPIOLIB_IRQCHIP
 /**
  * struct gpio_irq_chip - GPIO interrupt controller
@@ -325,6 +326,7 @@ static inline struct gpio_irq_chip *to_gpio_irq_chip(struct irq_chip *chip)
 }
 #endif
 
+// https://github.com/torvalds/linux/blob/master/include/linux/gpio/driver.h
 /**
  * struct gpio_chip - abstract a GPIO controller
  * @label: a functional name for the GPIO device, such as a part
