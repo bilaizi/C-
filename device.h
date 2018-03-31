@@ -255,6 +255,13 @@ struct driver_attribute {
 
 };
 
+struct class_attribute {
+	struct attribute attr;
+	ssize_t (*show)(struct class *class, struct class_attribute *attr,　char *buf);
+	ssize_t (*store)(struct class *class, struct class_attribute *attr,　const char *buf, size_t count);
+
+};
+
 /* interface for exporting device attributes */
 struct device_attribute {
 	struct attribute	attr;
