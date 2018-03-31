@@ -247,6 +247,14 @@ struct bus_attribute {
 	ssize_t (*store)(struct bus_type *bus, const char *buf, size_t count);
 }
 
+/* sysfs interface for exporting driver attributes */
+struct driver_attribute {
+	struct attribute attr;
+	ssize_t (*show)(struct device_driver *driver, char *buf);
+	ssize_t (*store)(struct device_driver *driver, const char *buf,　size_t count);
+
+};
+
 /* interface for exporting device attributes */
 struct device_attribute {
 	struct attribute	attr;
