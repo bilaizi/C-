@@ -240,3 +240,10 @@ struct device {
 	bool			offline:1;
 	bool			of_node_reused:1;
 };
+
+/* interface for exporting device attributes */
+struct device_attribute {
+	struct attribute	attr;
+	ssize_t (*show)(struct device *dev, struct device_attribute *attr, char *buf);
+	ssize_t (*store)(struct device *dev, struct device_attribute *attr, const char *buf, size_t count);
+};
