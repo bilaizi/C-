@@ -356,7 +356,7 @@ static inline struct gpio_irq_chip *to_gpio_irq_chip(struct irq_chip *chip)
  *      Any entry in the array may be NULL if there is no alias for the GPIO, however the array must be @ngpio entries long. 
  *      A name can include a single printk format specifier for an unsigned int.  
  *      It is substituted by the actual number of the gpio.
- * @can_sleep: flag must be set iff get()/set() methods sleep, as they must while accessing GPIO expander chips over I2C or SPI.
+ * @can_sleep: flag must be set if get()/set() methods sleep, as they must while accessing GPIO expander chips over I2C or SPI.
  *	This implies that if the chip supports IRQs, these IRQs need to be threaded as the chip access may sleep when e.g. 
  *	reading out the IRQ status registers.
  * @read_reg: reader function for generic GPIO.
