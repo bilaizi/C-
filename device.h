@@ -241,6 +241,12 @@ struct device {
 	bool			of_node_reused:1;
 };
 
+struct bus_attribute {
+	struct attribute	attr;
+	ssize_t (*show)(struct bus_type *bus, char *buf);
+	ssize_t (*store)(struct bus_type *bus, const char *buf, size_t count);
+}
+
 /* interface for exporting device attributes */
 struct device_attribute {
 	struct attribute	attr;
