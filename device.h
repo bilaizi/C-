@@ -246,6 +246,85 @@ struct bus_attribute {
 	ssize_t (*show)(struct bus_type *bus, char *buf);
 	ssize_t (*store)(struct bus_type *bus, const char *buf, size_t count);
 }
+
+#ifdef CONFIG_GPIOLIB_IRQCHIP
+/**
+ * struct gpio_irq_chip - GPIO interrupt controller
+ */
+struct gpio_irq_chip {
+	/**
+	 * @chip: GPIO IRQ chip implementation, provided by GPIO driver.
+	 */
+	struct irq_chip *chip;
+	/**
+	 * @domain: Interrupt translation domain; responsible for mapping between GPIO hwirq number and Linux IRQ number.
+	 */
+	struct irq_domain *domain;
+	/**
+	 * @domain_ops: Table of interrupt domain operations for this IRQ chip.
+	 */
+	const struct irq_domain_ops *domain_ops;
+	/**
+	 * @handler: The IRQ handler to use (often a predefined IRQ core function) for GPIO IRQs, provided by GPIO driver.
+	 */
+	irq_flow_handler_t handler;
+	/**
+	 * @default_type: Default IRQ triggering type applied during GPIO driver initialization, provided by GPIO driver.
+	 */
+	unsigned int default_type;
+	/**
+	 * @lock_key: Per GPIO IRQ chip lockdep classes.
+	 */
+	struct lock_class_key *lock_key;
+	struct lock_class_key *request_key;
+	/**
+	 * @parent_handler: The interrupt handler for the GPIO chip's parent interrupts, may be
+	 * NULL if the parent interrupts are nested rather than cascaded.
+	 */
+	irq_flow_handler_t parent_handler;
+	/**
+	 * @parent_handler_data: Data associated, and passed to, the handler for the parent interrupt.
+	 */
+	void *parent_handler_data;
+	/**
+	 * @num_parents: The number of interrupt parents of a GPIO chip.
+	 */
+	unsigned int num_parents;
+	/**
+	 * @parents: A list of interrupt parents of a GPIO chip. 
+	 *           This is owned by the driver, so the core will only reference this list, not modify it.
+	 */
+	unsigned int *parents;
+	/**
+	 * @map: A list of interrupt parents for each line of a GPIO chip.
+	 */
+	unsigned int *map;
+	/**
+	 * @threaded: True if set the interrupt handling uses nested threads.
+	 */
+	bool threaded;
+	/**
+	 * @need_valid_mask: If set core allocates @valid_mask with all bits set to one.
+	 */
+	bool need_valid_mask;
+	/**
+	 * @valid_mask: f not %NULL holds bitmask of GPIOs which are valid to be included
+	 * in IRQ domain of the chip.
+	 */
+	unsigned long *valid_mask;
+	/**
+	 * @first:  Required for static IRQ allocation. If set, irq_domain_add_simple()
+	 * will allocate and map all IRQs during initialization.
+	 */
+	unsigned int first;
+};
+
+static inline struct gpio_irq_chip *to_gpio_irq_chip(struct irq_chip *chip)
+{
+	return container_of(chip, struct gpio_irq_chip, chip);
+}
+#endif
+
 /**
  * struct gpio_chip - abstract a GPIO controller
  * @label: a functional name for the GPIO device, such as a part
