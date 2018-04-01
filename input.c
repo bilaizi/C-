@@ -27,8 +27,8 @@
  * @timer: timer for software autorepeat
  * @rep: current values for autorepeat parameters (delay, rate)
  * @mt: pointer to multitouch state
- * @absinfo: array of &struct input_absinfo elements holding information
- *	about absolute axes (current value, min, max, flat, fuzz, resolution)
+ * @absinfo: array of &struct input_absinfo elements holding information about absolute axes 
+             (current value, min, max, flat, fuzz, resolution)
  * @key: reflects current state of device's keys/buttons
  * @led: reflects current state of device's LEDs
  * @snd: reflects current state of sound effects
@@ -36,8 +36,7 @@
  * @open: this method is called when the very first user calls input_open_device(). 
  *	The driver must prepare the device to start generating events (start polling thread, request an IRQ, submit URB, etc.)
  * @close: this method is called when the very last user calls input_close_device().
- * @flush: purges the device. Most commonly used to get rid of force
- *	feedback effects loaded into the device when disconnecting from it
+ * @flush: purges the device. Most commonly used to get rid of force feedback effects loaded into the device when disconnecting from it
  * @event: event handler for events sent _to_ the device, like EV_LED or EV_SND.
  *	The device is expected to carry out the requested action (turn on a LED, play sound, etc.) 
  *	The call is protected by @event_lock and must not sleep
