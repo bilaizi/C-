@@ -26,6 +26,26 @@ static const struct bma150_cfg default_cfg = {
 	.bandwidth = BMA150_BW_50HZ
 };
 
+static void bma150_report_xyz(struct bma150_data *bma150)
+{
+	u8 data[BMA150_XYZ_DATA_SIZE];
+	s16 x, y, z;
+	s32 ret;
+	ret = i2c_smbus_read_i2c_block_data(bma150->client, BMA150_ACC_X_LSB_REG, BMA150_XYZ_DATA_SIZE, data);
+	if (ret != BMA150_XYZ_DATA_SIZE)
+		return;
+	x = ((0xc0 & data[0]) >> 6) | (data[1] << 2);
+	y = ((0xc0 & data[2]) >> 6) | (data[3] << 2);
+	z = ((0xc0 & data[4]) >> 6) | (data[5] << 2);
+	x = sign_extend32(x, 9);
+	y = sign_extend32(y, 9);
+	z = sign_extend32(z, 9);
+	input_report_abs(bma150->input, ABS_X, x);
+	input_report_abs(bma150->input, ABS_Y, y);
+	input_report_abs(bma150->input, ABS_Z, z);
+	input_sync(bma150->input);
+}
+
 static void bma150_init_input_device(struct bma150_data *bma150, struct input_dev *idev)
 {
 	idev->name = BMA150_DRIVER;
