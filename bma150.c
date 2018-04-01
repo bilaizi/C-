@@ -26,6 +26,8 @@ static const struct bma150_cfg default_cfg = {
 	.bandwidth = BMA150_BW_50HZ
 };
 
+/* Each axis is represented by a 2-byte data word */
+#define BMA150_XYZ_DATA_SIZE	6
 static void bma150_report_xyz(struct bma150_data *bma150)
 {
 	u8 data[BMA150_XYZ_DATA_SIZE];
