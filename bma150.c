@@ -48,6 +48,17 @@ static void bma150_report_xyz(struct bma150_data *bma150)
 	input_sync(bma150->input);
 }
 
+static irqreturn_t bma150_irq_thread(int irq, void *dev)
+{
+	bma150_report_xyz(dev);
+	return IRQ_HANDLED;
+}
+
+static void bma150_poll(struct input_polled_dev *dev)
+{
+	bma150_report_xyz(dev->private);
+}
+
 static void bma150_init_input_device(struct bma150_data *bma150, struct input_dev *idev)
 {
 	idev->name = BMA150_DRIVER;
