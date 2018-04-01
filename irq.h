@@ -80,6 +80,32 @@ struct irq_chip {
 };
 
 /**
+ * struct irq_common_data - per irq data shared by all irqchips
+ * @state_use_accessors: status information for irq chip functions. Use accessor functions to deal with it
+ * @node:		node index useful for balancing
+ * @handler_data:	per-IRQ data for the irq_chip methods
+ * @affinity:    IRQ affinity on SMP. If this is an IPI related irq, then this is the mask of the CPUs to which an IPI can be sent.
+ * @effective_affinity:	The effective IRQ affinity on SMP as some irq hips do not allow multi CPU destinations. A subset of @affinity.
+ * @msi_desc:		MSI descriptor
+ * @ipi_offset:		Offset of first IPI target cpu in @affinity. Optional.
+ */
+struct irq_common_data {
+	unsigned int		__private state_use_accessors;
+#ifdef CONFIG_NUMA
+	unsigned int		node;
+#endif
+	void			*handler_data;
+	struct msi_desc		*msi_desc;
+	cpumask_var_t		affinity;
+#ifdef CONFIG_GENERIC_IRQ_EFFECTIVE_AFF_MASK
+	cpumask_var_t		effective_affinity;
+#endif
+#ifdef CONFIG_GENERIC_IRQ_IPI
+	unsigned int		ipi_offset;
+#endif
+};
+
+/**
  * struct irq_data - per irq chip data passed down to chip functions
  * @mask:		precomputed bitmask for accessing the chip registers
  * @irq:		interrupt number
