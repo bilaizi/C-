@@ -31,7 +31,7 @@ struct pwm_device {
  * @disable: disable PWM output toggling
  * @apply: atomically apply a new PWM config. The state argument should be adjusted with the real hardware config
  *	    (if the approximate the period or duty_cycle value, state should reflect it)
- * @get_state: get the current PWM state. This function is only alled once per PWM device when the PWM chip is registered.
+ * @get_state: get the current PWM state. This function is only called once per PWM device when the PWM chip is registered.
  * @dbg_show: optional routine to show contents in debugfs
  * @owner: helps prevent removal of modules exporting active PWMs
  */
