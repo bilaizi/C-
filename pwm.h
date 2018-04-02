@@ -41,16 +41,6 @@ struct pwm_state {
 };
 
 /**
- * struct pwm_capture - PWM capture data
- * @period: period of the PWM signal (in nanoseconds)
- * @duty_cycle: duty cycle of the PWM signal (in nanoseconds)
- */
-struct pwm_capture {
-	unsigned int period;
-	unsigned int duty_cycle;
-};
-
-/**
  * struct pwm_device - PWM channel object
  * @label: name of the PWM device
  * @flags: flags associated with the PWM device
