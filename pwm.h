@@ -1,4 +1,56 @@
 /**
+ * enum pwm_polarity - polarity of a PWM signal
+ * @PWM_POLARITY_NORMAL: a high signal for the duration of the duty-cycle, 
+ 	followed by a low signal for the remainder of the pulse period
+ * @PWM_POLARITY_INVERSED: a low signal for the duration of the duty-period
+ */
+enum pwm_polarity {
+	PWM_POLARITY_NORMAL,
+	PWM_POLARITY_INVERSED,
+};
+
+/**
+ * struct pwm_args - board-dependent PWM arguments
+ * @period: reference period
+ * @polarity: reference polarity
+ *
+ * This structure describes board-dependent arguments attached to a PWM device. 
+ * These arguments are usually retrieved from the PWM lookup table or device tree.
+ *
+ * Do not confuse this with the PWM state: 
+ * PWM arguments represent the initial configuration
+ * that users want to use on this PWM device rather than the current PWM hardware state.
+ */
+struct pwm_args {
+	unsigned int period;
+	enum pwm_polarity polarity;
+};
+
+/*
+ * struct pwm_state - state of a PWM channel
+ * @period: PWM period (in nanoseconds)
+ * @duty_cycle: PWM duty cycle (in nanoseconds)
+ * @polarity: PWM polarity
+ * @enabled: PWM enabled status
+ */
+struct pwm_state {
+	unsigned int period;
+	unsigned int duty_cycle;
+	enum pwm_polarity polarity;
+	bool enabled;
+};
+
+/**
+ * struct pwm_capture - PWM capture data
+ * @period: period of the PWM signal (in nanoseconds)
+ * @duty_cycle: duty cycle of the PWM signal (in nanoseconds)
+ */
+struct pwm_capture {
+	unsigned int period;
+	unsigned int duty_cycle;
+};
+
+/**
  * struct pwm_device - PWM channel object
  * @label: name of the PWM device
  * @flags: flags associated with the PWM device
@@ -72,3 +124,5 @@ struct pwm_chip {
 	struct pwm_device * (*of_xlate)(struct pwm_chip *pc, onst struct of_phandle_args *args);
 	unsigned int of_pwm_n_cells;
 };
+
+
