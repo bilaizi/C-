@@ -86,7 +86,6 @@ struct sk_buff {
 		struct rb_node	rbnode; /* used in netem & tcp stack */
 	};
 	struct sock		*sk;
-
 	union {
 		ktime_t		tstamp;
 		u64		skb_mstamp;
