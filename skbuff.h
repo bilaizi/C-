@@ -119,7 +119,6 @@ struct sk_buff {
 	 * Note that queue_mapping is here mostly to fill a hole.
 	 */
 	__u16			queue_mapping;
-
 /* if you move cloned around you also must adapt those constants */
 #ifdef __BIG_ENDIAN_BITFIELD
 #define CLONED_MASK	(1 << 7)
