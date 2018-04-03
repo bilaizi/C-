@@ -92,10 +92,9 @@ struct sk_buff {
 		u64		skb_mstamp;
 	};
 	/*
-	 * This is the control buffer. It is free to use for every
-	 * layer. Please put your private variables there. If you
-	 * want to keep them across layers you have to do a skb_clone()
-	 * first. This is owned by whoever has the skb queued ATM.
+	 * This is the control buffer. It is free to use for every layer. 
+	 * Please put your private variables there. If you want to keep them across layers you have to do a skb_clone() first.
+	 * This is owned by whoever has the skb queued ATM.
 	 */
 	char			cb[48] __aligned(8);
 	union {
@@ -129,15 +128,12 @@ struct sk_buff {
 #define CLONED_MASK	1
 #endif
 #define CLONED_OFFSET()		offsetof(struct sk_buff, __cloned_offset)
-
 	__u8		__cloned_offset[0];
 	__u8		cloned:1, nohdr:1, fclone:2, peeked:1, head_frag:1, xmit_more:1, __unused:1; /* one bit hole */
-
 	/* fields enclosed in headers_start/headers_end are copied using a single memcpy() in __copy_skb_header() */
 	/* private: */
 	__u32		headers_start[0];
 	/* public: */
-
 /* if you move pkt_type around you also must adapt those constants */
 #ifdef __BIG_ENDIAN_BITFIELD
 #define PKT_TYPE_MAX	(7 << 5)
