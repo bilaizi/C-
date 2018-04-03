@@ -22,8 +22,8 @@ struct fb_var_screeninfo {
 	__u32 yres;
 	__u32 xres_virtual;		/* virtual resolution */
 	__u32 yres_virtual;
-	__u32 xoffset;			/* offset from virtual to visible */
-	__u32 yoffset;			/* resolution */ 
+	__u32 xoffset;			/* offset from virtual to visible resolution */
+	__u32 yoffset;			
 	__u32 bits_per_pixel;		/* guess what */
 	__u32 grayscale;		/* 0 = color, 1 = grayscale, >1 = FOURCC*/
 	struct fb_bitfield red;		/* bitfield in fb mem if true color, */
