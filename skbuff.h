@@ -103,7 +103,6 @@ struct sk_buff {
 		};
 		struct list_head	tcp_tsorted_anchor;
 	};
-
 #ifdef CONFIG_XFRM
 	struct	sec_path	*sp;
 #endif
